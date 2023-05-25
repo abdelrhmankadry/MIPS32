@@ -1,0 +1,18 @@
+module instructionmemory(clk,Pc,instruction);
+input clk ;
+input [31:0]Pc;
+output reg [31:0]instruction;
+reg[31:0]instructionmemory[0:8191];
+initial
+begin
+$readmemb("C:\Modeltech_pe_edu_10.4a\examples\myfile.txt",instructionmemory) ;
+end
+initial
+begin
+instruction<=0 ;
+end
+always@(posedge clk)
+begin
+ instruction<=instructionmemory[Pc>>2];
+end
+endmodule
